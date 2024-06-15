@@ -6,12 +6,13 @@ from start_view_sources.start_view import StartView
 from theory_screens_sources.first_theory_screen_source.first_theory_view import \
     FirstTheoryView
 from settings_view_sources.settings_view import SettingsView
-from settings_view_sources.statistics_screen.statistics_screen import \
-    StatisticsScreen
-from tests_screens_sources.first_test_screen_source.first_test_screen import \
-    FirstTestScreen
+from statistics_view.statistics_view import \
+    StatisticsView
+from tests_view_sources.first_test_screen_source.first_test_screen import \
+    FirstTestView
 from practice_screens_sources.practice_screen_source.practice_screen import \
     PracticeScreen
+from account_view_sources.account_view import AccountView
 
 
 def main(page: ft.Page):
@@ -39,16 +40,16 @@ def main(page: ft.Page):
                 page.views.append(MainView(page))
             case "/main/settings":
                 page.views.append(SettingsView(page))
-            case "/main/account/statistics":
-                statistics_screen = StatisticsScreen(page)
-                page.views.append(statistics_screen.create_statistics_screen())
+            case "/main/settings/account":
+                page.views.append(AccountView(page))
+            case "/main/settings/statistics":
+                page.views.append(StatisticsView(page))
             case "/main/theory_1":
                 first_theory_screen = FirstTheoryView(page)
                 page.views.append(
                     first_theory_screen.create_first_theory_screen())
             case "/main/test_1":
-                first_test_screen = FirstTestScreen(page)
-                page.views.append(first_test_screen.create_first_test_screen())
+                page.views.append(FirstTestView(page))
             case "/main/practice":
                 practice_screen = PracticeScreen(page)
                 page.views.append(practice_screen.create_practice_screen())

@@ -13,7 +13,7 @@ class SettingsButton(ft.Container):
                 ft.Row(
                     [
                         ft.IconButton(
-                            icon=ft.icons.PERSON_OUTLINE,
+                            icon=ft.icons.SETTINGS_OUTLINED,
                             icon_color=ft.colors.ON_SURFACE,
                             on_click=lambda e: self.page.go("/main/settings")
                         ),

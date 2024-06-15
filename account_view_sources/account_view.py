@@ -1,18 +1,16 @@
 import flet as ft
-from theory_screens_sources.first_theory_screen_source.components.arrow_back_and_logo import ArrowBackAndLogo
+from theory_screens_sources.first_theory_screen_source.components \
+    .arrow_back_and_logo import ArrowBackAndLogo
+from account_view_sources.components.account_header import AccountHeader
 from settings_view_sources.components.profile_image import ProfileImage
-from settings_view_sources.components.settings_header import SettingsHeader
-from settings_view_sources.components.settings_subheader import SettingsSubheader
-from settings_view_sources.components.button_log_out import ButtonLogOut
-from settings_view_sources.components.statistics_card import StatisticsCard
-from settings_view_sources.components.account_card import AccountCard
+from account_view_sources.components.login_card import LoginCard
 
 
-class SettingsView(ft.View):
+class AccountView(ft.View):
     def __init__(self, page: ft.Page):
         super().__init__()
         self.page = page
-        self.title = "/main/settings"
+        self.title = "/main/settings/account"
         self.padding = 0
         self.controls = [
             ft.Container(
@@ -22,12 +20,10 @@ class SettingsView(ft.View):
                             lambda e: self.page.go("/main")
                         ),
                         ProfileImage(),
-                        SettingsHeader(),
-                        SettingsSubheader(),
+                        AccountHeader(),
                         ft.Row(
                             [
-                                StatisticsCard(),
-                                AccountCard()
+                                LoginCard(),
 
                             ],
                             alignment=ft.MainAxisAlignment.CENTER,
@@ -35,7 +31,6 @@ class SettingsView(ft.View):
                             width=1500,
                             height=346,
                         ),
-                        ButtonLogOut()
                     ],
                     spacing=8
                 ),

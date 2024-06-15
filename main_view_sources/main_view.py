@@ -16,10 +16,7 @@ class MainView(ft.View):
         self.page = page
         self.padding = 0
         self.route = "/main"
-        self.logo = Logo()
         self.navigation_rail = NavigationRail(self.change_view)
-        self.settings_button = SettingsButton(self.page)
-        self.switch_theme = AccentColorAndTheme()
         self.theory_cards = TheoryCards(self.page)
         self.test_cards = TestCards(self.page)
         self.practice_card = PracticeCards(self.page)
@@ -44,15 +41,15 @@ class MainView(ft.View):
                     [
                         ft.Column(
                             [
-                                self.logo,
+                                Logo(),
                                 self.navigation_rail,
-                                self.switch_theme
+                                AccentColorAndTheme()
                             ],
                             spacing=0
                         ),
                         ft.Column(
                             [
-                                self.settings_button,
+                                SettingsButton(self.page),
                                 cards
                             ],
                             spacing=0

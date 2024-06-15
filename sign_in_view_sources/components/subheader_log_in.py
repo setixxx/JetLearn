@@ -1,7 +1,7 @@
 import flet as ft
 
 
-class SupportTextLogIn(ft.Container):
+class SubheaderLogIn(ft.Container):
     def __init__(self):
         super().__init__()
         self.width = 461

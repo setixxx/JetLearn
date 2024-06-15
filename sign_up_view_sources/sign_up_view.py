@@ -14,11 +14,8 @@ class SignUpView(ft.View):
     def __init__(self, page: ft.Page):
         super().__init__()
         self.page = page
-        self.header_email = HeaderEmail()
-        self.subheader_email = SubheaderEmail()
         self.nickname_and_email_text_field = NicknameAndEmailTextField()
         self.password_check_box = PasswordCheckBox(self.show_password)
-        self.button_next_and_log_in = ButtonNextAndLogIn()
         self.route = "/sign_up"
         self.padding = 0
         self.controls = [
@@ -30,8 +27,8 @@ class SignUpView(ft.View):
                                 [
                                     ft.Column(
                                         [
-                                            self.header_email,
-                                            self.subheader_email,
+                                            HeaderEmail(),
+                                            SubheaderEmail()
                                         ],
                                         spacing=0
                                     ),
@@ -39,7 +36,7 @@ class SignUpView(ft.View):
                                         [
                                             self.nickname_and_email_text_field,
                                             self.password_check_box,
-                                            self.button_next_and_log_in,
+                                            ButtonNextAndLogIn()
                                         ],
                                         spacing=0
                                     )

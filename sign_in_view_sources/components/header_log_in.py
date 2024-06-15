@@ -1,7 +1,7 @@
 import flet as ft
 
 
-class HeaderTextLogIn(ft.Container):
+class HeaderLogIn(ft.Container):
     def __init__(self):
         super().__init__()
         self.height = 134
