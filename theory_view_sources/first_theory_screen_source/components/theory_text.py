@@ -1,12 +1,23 @@
 import flet as ft
-from theory_screens_sources.first_theory_screen_source.components.modifier_first_code import create_modifier_first_code
-from theory_screens_sources.first_theory_screen_source.components.set_colore_code_first import create_set_colore_code_first
-from theory_screens_sources.first_theory_screen_source.components.set_color_code_second import create_set_color_code_second
-from theory_screens_sources.first_theory_screen_source.components.set_sizes_code import create_set_sizes_code
+from theory_view_sources.first_theory_screen_source.components.modifier_first_code import \
+    Code
+from theory_view_sources.first_theory_screen_source.components.set_colore_code_first import \
+    create_set_colore_code_first
+from theory_view_sources.first_theory_screen_source.components.set_color_code_second import \
+    create_set_color_code_second
+from theory_view_sources.first_theory_screen_source.components.set_sizes_code import \
+    create_set_sizes_code
 
-def create_theory_text(go_back):
-    return ft.Container(
-        ft.Card(
+
+class TheoryText(ft.Container):
+    def __init__(self, destination, page):
+        super().__init__()
+        self.destination = destination
+        self.margin = ft.padding.only(right=39, bottom=32)
+        self.alignment = ft.alignment.bottom_left
+        self.width = 812
+        self.height = 2870
+        self.content = ft.Card(
             ft.Container(
                 ft.Column(
                     [
@@ -31,7 +42,7 @@ def create_theory_text(go_back):
                             "аннотацией @Compose, которая имеет ряд параметров:",
                             size=20
                         ),
-                        create_modifier_first_code(),
+                        Code(page),
                         ft.Text(
                             "Установка цвета",
                             size=28,
@@ -86,7 +97,7 @@ def create_theory_text(go_back):
                                 [
                                     ft.TextButton(
                                         "Назад",
-                                        on_click=go_back
+                                        on_click=destination
                                     ),
                                     ft.FilledButton(
                                         "Вперед"
@@ -103,10 +114,4 @@ def create_theory_text(go_back):
                 padding=ft.padding.only(top=48, left=48, right=48),
             ),
             width=773
-        ),
-        margin=ft.padding.only(top=76, right=39, bottom=32),
-        alignment=ft.alignment.bottom_left,
-        width=812,
-        height=2870,
-
-    )
+        )

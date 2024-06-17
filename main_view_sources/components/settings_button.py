@@ -1,5 +1,5 @@
 import flet as ft
-
+from main_view_sources.components.profile_image import ProfileImage
 
 class SettingsButton(ft.Container):
     def __init__(self, page):
@@ -17,12 +17,7 @@ class SettingsButton(ft.Container):
                             icon_color=ft.colors.ON_SURFACE,
                             on_click=lambda e: self.page.go("/main/settings")
                         ),
-                        ft.Container(
-                            bgcolor="#006874",
-                            width=40,
-                            height=40,
-                            border_radius=40
-                        )
+                        ProfileImage()
                     ],
                     spacing=8,
                     alignment=ft.MainAxisAlignment.CENTER,

@@ -61,7 +61,7 @@ class TheoryCards(ft.Container):
                     [
                         TheoryCard("Введение в\nJetpack\nCompose",
                                    "assets/images/unnamed.jpg",
-                                   lambda e: self.page.go("/main/theory_1")),
+                                   lambda e: self.page.go("/main/theory")),
                         TheoryCard("Модификаторы и визуальный\nинтерфейс",
                                    "assets/images/unnamed.jpg",
                                    lambda e: self.page.go("/main/theory_2")),

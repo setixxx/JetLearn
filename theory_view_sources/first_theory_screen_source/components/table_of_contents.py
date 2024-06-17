@@ -1,8 +1,14 @@
 import flet as ft
 
-def create_table_of_contents():
-    return ft.Container(
-        ft.Column(
+
+class TableOfContents(ft.Container):
+    def __init__(self):
+        super().__init__()
+        self.margin = ft.padding.only(top=76)
+        self.alignment = ft.alignment.bottom_left
+        self.width = 400
+        self.height = 800
+        self.content = ft.Column(
             [
                 ft.Container(
                     ft.Row(
@@ -49,11 +55,11 @@ def create_table_of_contents():
                 ft.Container(
                     ft.ListTile(
                         leading=ft.Icon(ft.icons.ARTICLE_OUTLINED),
-                            title=ft.Text(
-                                "Установка размеров",
-                                size=16,
-                                weight=ft.FontWeight.W_500
-                            ),
+                        title=ft.Text(
+                            "Установка размеров",
+                            size=16,
+                            weight=ft.FontWeight.W_500
+                        ),
                         selected=False,
                     ),
                     width=360,
@@ -61,9 +67,4 @@ def create_table_of_contents():
                 )
             ],
             spacing=0
-        ),
-        margin=ft.padding.only(top=76),
-        alignment=ft.alignment.bottom_left,
-        width=400,
-        height=800,
-    )
+        )

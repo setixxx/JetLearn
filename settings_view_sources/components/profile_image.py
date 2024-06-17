@@ -10,7 +10,7 @@ class ProfileImage(ft.Row):
         self.height = 100
         self.controls = [
             ft.Container(
-                bgcolor="#006874",
+                bgcolor=ft.colors.PRIMARY,
                 width=100,
                 height=100,
                 border_radius=100

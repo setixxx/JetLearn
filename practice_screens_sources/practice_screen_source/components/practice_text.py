@@ -1,10 +1,4 @@
 import flet as ft
-from theory_screens_sources.first_theory_screen_source.components.modifier_first_code import create_modifier_first_code
-from theory_screens_sources.first_theory_screen_source.components.set_colore_code_first import \
-    create_set_colore_code_first
-from theory_screens_sources.first_theory_screen_source.components.set_color_code_second import \
-    create_set_color_code_second
-from theory_screens_sources.first_theory_screen_source.components.set_sizes_code import create_set_sizes_code
 
 
 def create_practice_text(go_back):

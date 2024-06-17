@@ -3,16 +3,19 @@ from sign_up_view_sources.sign_up_view import SignUpView
 from sign_in_view_sources.sign_in_view import SignInView
 from main_view_sources.main_view import MainView
 from start_view_sources.start_view import StartView
-from theory_screens_sources.first_theory_screen_source.first_theory_view import \
-    FirstTheoryView
+from theory_view_sources.first_theory_screen_source.first_theory_view \
+    import FirstTheoryView
+
 from settings_view_sources.settings_view import SettingsView
-from statistics_view.statistics_view import \
+from statistics_view_sources.statistics_view import \
     StatisticsView
 from tests_view_sources.first_test_screen_source.first_test_screen import \
     FirstTestView
 from practice_screens_sources.practice_screen_source.practice_screen import \
     PracticeScreen
 from account_view_sources.account_view import AccountView
+from database_sources.database import DatabaseManager
+from app_state import AppState
 
 
 def main(page: ft.Page):
@@ -27,27 +30,27 @@ def main(page: ft.Page):
         color_scheme_seed="blue",
     )
 
+    app_state = AppState()
+
     def route_change(route):
         page.views.clear()
         match page.route:
             case "/":
                 page.views.append(StartView(page))
             case "/sign_in":
-                page.views.append(SignInView(page))
+                page.views.append(SignInView(page, app_state))
             case "/sign_up":
-                page.views.append(SignUpView(page))
+                page.views.append(SignUpView(page, app_state))
             case "/main":
                 page.views.append(MainView(page))
             case "/main/settings":
-                page.views.append(SettingsView(page))
+                page.views.append(SettingsView(page, app_state))
             case "/main/settings/account":
                 page.views.append(AccountView(page))
             case "/main/settings/statistics":
                 page.views.append(StatisticsView(page))
-            case "/main/theory_1":
-                first_theory_screen = FirstTheoryView(page)
-                page.views.append(
-                    first_theory_screen.create_first_theory_screen())
+            case "/main/theory":
+                page.views.append(FirstTheoryView(page))
             case "/main/test_1":
                 page.views.append(FirstTestView(page))
             case "/main/practice":
@@ -64,5 +67,7 @@ def main(page: ft.Page):
     page.on_view_pop = view_pop
     page.go(page.route)
 
+    database = DatabaseManager("users.sqlite")
+    database.create_table()
 
 ft.app(target=main, assets_dir='assets')

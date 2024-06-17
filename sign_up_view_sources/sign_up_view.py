@@ -5,16 +5,17 @@ from sign_up_view_sources.components.password_check_box import \
     PasswordCheckBox
 from sign_up_view_sources.components.subheader_email import \
     SubheaderEmail
-from sign_up_view_sources.components.nickname_and_email_text_field import \
-    NicknameAndEmailTextField
-from sign_up_view_sources.components.button_next_and_log_in import \
-    ButtonNextAndLogIn
+from sign_up_view_sources.components.sign_up_fields import \
+    SignUpFields
+from sign_up_view_sources.components.buttons_sign_up import \
+    ButtonsSignUp
 
 class SignUpView(ft.View):
-    def __init__(self, page: ft.Page):
+    def __init__(self, page: ft.Page, app_state):
         super().__init__()
+        self.app_state = app_state
         self.page = page
-        self.nickname_and_email_text_field = NicknameAndEmailTextField()
+        self.sign_up_fields = SignUpFields()
         self.password_check_box = PasswordCheckBox(self.show_password)
         self.route = "/sign_up"
         self.padding = 0
@@ -34,9 +35,10 @@ class SignUpView(ft.View):
                                     ),
                                     ft.Column(
                                         [
-                                            self.nickname_and_email_text_field,
+                                            self.sign_up_fields,
                                             self.password_check_box,
-                                            ButtonNextAndLogIn()
+                                            ButtonsSignUp(self.sign_up_fields,
+                                                          self.app_state)
                                         ],
                                         spacing=0
                                     )
@@ -62,9 +64,9 @@ class SignUpView(ft.View):
 
     def show_password(self, e):
         if self.password_check_box.content.controls[0].value:
-            self.nickname_and_email_text_field.content.controls[1].controls[0].password = False
-            self.nickname_and_email_text_field.content.controls[1].controls[1].password = False
+            self.sign_up_fields.content.controls[1].controls[0].password = False
+            self.sign_up_fields.content.controls[1].controls[1].password = False
         else:
-            self.nickname_and_email_text_field.content.controls[1].controls[0].password = True
-            self.nickname_and_email_text_field.content.controls[1].controls[1].password = True
+            self.sign_up_fields.content.controls[1].controls[0].password = True
+            self.sign_up_fields.content.controls[1].controls[1].password = True
         self.page.update()

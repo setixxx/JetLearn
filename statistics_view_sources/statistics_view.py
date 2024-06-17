@@ -1,18 +1,16 @@
 import flet as ft
 from theory_view_sources.first_theory_screen_source.components \
     .arrow_back_and_logo import ArrowBackAndLogo
-from account_view_sources.components.account_header import AccountHeader
 from settings_view_sources.components.profile_image import ProfileImage
-from account_view_sources.components.login_card import LoginCard
-from account_view_sources.components.email_card import EmailCard
-from account_view_sources.components.password_card import PasswordCard
+from statistics_view_sources.components.statistics_header \
+    import StatisticsHeader
 
 
-class AccountView(ft.View):
+class StatisticsView(ft.View):
     def __init__(self, page: ft.Page):
         super().__init__()
         self.page = page
-        self.title = "/main/settings/account"
+        self.title = "/main/settings/statistics"
         self.padding = 0
         self.controls = [
             ft.Container(
@@ -22,17 +20,17 @@ class AccountView(ft.View):
                             lambda e: self.page.go("/main/settings")
                         ),
                         ProfileImage(),
-                        AccountHeader(),
+                        StatisticsHeader(),
                         ft.Row(
                             [
                                 ft.Column(
                                     [
-                                        LoginCard(),
-                                        EmailCard()
+                                        # LoginCard(),
+                                        # EmailCard()
                                     ],
                                     spacing=23
                                 ),
-                                PasswordCard()
+                                # PasswordCard()
                             ],
                             spacing=23,
                             alignment=ft.MainAxisAlignment.CENTER,
@@ -46,4 +44,3 @@ class AccountView(ft.View):
                 height=800
             )
         ]
-

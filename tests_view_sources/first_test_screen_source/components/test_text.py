@@ -2,9 +2,15 @@ import flet as ft
 from tests_view_sources.results import Results
 
 
-def create_test_text(go_back):
-    return ft.Container(
-        ft.Container(
+class TestText(ft.Container):
+    def __init__(self, destination):
+        super().__init__()
+        self.destination = destination
+        self.margin = ft.padding.only(right=39, bottom=32)
+        self.alignment = ft.alignment.bottom_left
+        self.width = 812
+        self.height = 1000
+        self.content = ft.Container(
             ft.Container(
                 ft.Column(
                     [
@@ -153,15 +159,10 @@ def create_test_text(go_back):
                             bgcolor=ft.colors.SECONDARY_CONTAINER,
                             border_radius=20
                         ),
-                        # Results(page),
+                        Results(),
                     ]
                 ),
-                padding=ft.padding.only(top=48, left=48, right=48),
+                padding=ft.padding.only(left=48, right=48),
             ),
             width=812
-        ),
-        margin=ft.padding.only(top=36, right=39, bottom=32),
-        alignment=ft.alignment.bottom_left,
-        width=812,
-        height=1000,
-    )
+        )

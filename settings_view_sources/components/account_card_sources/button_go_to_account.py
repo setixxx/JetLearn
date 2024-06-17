@@ -10,7 +10,8 @@ class ButtonGoToAccount(ft.Container):
         self.content = ft.Row(
             [
                 ft.FilledButton(
-                    "Перейти"
+                    "Перейти",
+                    on_click=lambda e: self.page.go("/main/settings/account")
                 ),
             ],
             alignment=ft.MainAxisAlignment.END,
