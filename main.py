@@ -14,7 +14,7 @@ from tests_view_sources.first_test_screen_source.first_test_screen import \
 from practice_screens_sources.practice_screen_source.practice_screen import \
     PracticeScreen
 from account_view_sources.account_view import AccountView
-from database_sources.database import DatabaseManager
+from database import DatabaseManager
 from app_state import AppState
 
 
@@ -68,6 +68,6 @@ def main(page: ft.Page):
     page.go(page.route)
 
     database = DatabaseManager("users.sqlite")
-    database.create_table()
+    database.create_table_users()
 
 ft.app(target=main, assets_dir='assets')

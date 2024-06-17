@@ -1,5 +1,5 @@
 import flet as ft
-from database_sources.database import DatabaseManager
+from database import DatabaseManager
 
 
 class ButtonsSignIn(ft.Container):
@@ -28,21 +28,39 @@ class ButtonsSignIn(ft.Container):
         )
 
     def check_user(self, e):
-        login = self.sign_in_fields.get_login_sign_in()
+        login_or_email = self.sign_in_fields.get_login_sign_in()
         password = self.sign_in_fields.get_password_sign_in()
-        user = self.database.find_user(login)
-        check_password = self.database.find_user_password(login, password)
 
-        if user is None:
+        user_login = self.database.find_user_login(login_or_email)
+        user_email = self.database.find_user_email(login_or_email)
+
+        if user_login:
+            check_password = self.database.find_user_password(login_or_email,
+                                                              password)
+            if check_password:
+                self.sign_in_fields.set_login_error_sign_in(None)
+                self.sign_in_fields.set_password_error_sign_in(None)
+                self.app_state.set_login(login_or_email)
+                self.page.go("/main")
+            else:
+                self.sign_in_fields.set_login_error_sign_in(None)
+                self.sign_in_fields.set_password_error_sign_in(
+                    "Неправильный пароль")
+        elif user_email:
+            check_password = self.database.find_user_password_by_email(
+                login_or_email, password)
+            if check_password:
+                self.sign_in_fields.set_login_error_sign_in(None)
+                self.sign_in_fields.set_password_error_sign_in(None)
+                find_email = self.database.find_login_by_email(login_or_email)
+                self.app_state.set_login(find_email[0])
+                self.page.go("/main")
+            else:
+                self.sign_in_fields.set_login_error_sign_in(None)
+                self.sign_in_fields.set_password_error_sign_in(
+                    "Неправильный пароль")
+        else:
             self.sign_in_fields.set_login_error_sign_in(
                 "Пользователь не найден")
             self.sign_in_fields.set_password_error_sign_in(None)
-        elif check_password is None:
-            self.sign_in_fields.set_login_error_sign_in(None)
-            self.sign_in_fields.set_password_error_sign_in(
-                "Неправильный пароль")
-        else:
-            self.sign_in_fields.set_login_error_sign_in(None)
-            self.sign_in_fields.set_password_error_sign_in(None)
-            self.app_state.set_login(login)
-            self.page.go("/main")
+

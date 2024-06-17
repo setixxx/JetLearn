@@ -1,5 +1,5 @@
 import flet as ft
-from database_sources.database import DatabaseManager
+from database import DatabaseManager
 import re
 
 
@@ -33,7 +33,7 @@ class ButtonsSignUp(ft.Container):
         email = self.sign_up_fields.get_email_sign_up()
         password = self.sign_up_fields.get_password_sign_up()
         password_confirm = self.sign_up_fields.get_password_confirm_sign_up()
-        login_check = self.database.find_user(login)
+        login_check = self.database.find_user_login(login)
         email_check = self.database.find_user_email(email)
         pattern_email = (
             re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'))
@@ -78,7 +78,8 @@ class ButtonsSignUp(ft.Container):
         login_error = self.sign_up_fields.get_login_error_text()
         email_error = self.sign_up_fields.get_email_error_text()
         password_error = self.sign_up_fields.get_password_error_text()
-        password_confirm_error = self.sign_up_fields.get_password_confirm_error_text()
+        password_confirm_error = (self.sign_up_fields.
+                                  get_password_confirm_error_text())
 
         if (
             (login_error == "" or login_error is None) and
@@ -86,7 +87,17 @@ class ButtonsSignUp(ft.Container):
             (password_error == "" or password_error is None) and
             (password_confirm_error == "" or password_confirm_error is None)
         ):
+            self.create_tables(login)
             self.database.add_user(login, email, password)
-            self.database.get_users()
             self.app_state.set_login(login)
             self.page.go("/main")
+
+    def create_tables(self, login):
+        self.database.create_table_theory()
+        self.database.add_new_theory(login)
+        completed_theory = self.database.get_completed_theory_count(login)
+        self.app_state.set_completed_theory(completed_theory)
+        self.database.create_table_test()
+        self.database.add_new_tests(login)
+        self.database.create_table_practice()
+        self.database.add_new_practice(login)

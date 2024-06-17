@@ -26,7 +26,7 @@ class SettingsView(ft.View):
                         SettingsSubheader(),
                         ft.Row(
                             [
-                                StatisticsCard(),
+                                StatisticsCard(app_state),
                                 AccountCard()
                             ],
                             spacing=23,

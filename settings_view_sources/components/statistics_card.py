@@ -7,13 +7,13 @@ from settings_view_sources.components.statistics_card_sources.button_go_to_stati
 
 
 class StatisticsCard(ft.Card):
-    def __init__(self):
+    def __init__(self, app_state):
         super().__init__()
         self.content = ft.Column(
             [
                 Header(),
                 Subheader(),
-                TheoryProgress(),
+                TheoryProgress(app_state),
                 TestProgress(),
                 ButtonGoToStatistics(),
             ],
