@@ -1,0 +1,87 @@
+import flet as ft
+from theory_view_sources.components.code_theory import \
+    CodeTheory
+import json
+
+json_file_path = 'theory.json'
+
+# Функция для чтения данных из JSON файла
+def load_json_data(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        json_data = json.load(file)
+    return json_data
+
+class FirstTheoryText(ft.Container):
+    def __init__(self, page):
+        super().__init__()
+        self.margin = ft.padding.only(right=39, bottom=32)
+        self.alignment = ft.alignment.bottom_left
+        self.width = 812
+        self.height = 2000
+        self.button_go_back = ft.TextButton(
+            "Назад",
+        )
+        self.button_go_back.disabled = True
+
+        # Загрузка данных из JSON файла
+        json_data = load_json_data(json_file_path)
+
+        self.content = ft.Card(
+            ft.Container(
+                ft.Column(
+                    [
+                        ft.Text(
+                            json_data[0]["title"],
+                            size=28,
+                            weight=ft.FontWeight.W_600
+                        ),
+                        ft.Text(
+                            json_data[0]["content"][0],
+                            size=20
+                        ),
+                        ft.Text(
+                            json_data[0]["content"][1],
+                            size=20
+                        ),
+                        ft.Text(
+                            json_data[0]["content"][2],
+                            size=20
+                        ),
+                        CodeTheory(json_data[0]["code_examples"][0], page),
+                        ft.Text(
+                            json_data[0]["content"][3],
+                            size=20
+                        ),
+                        ft.Text(
+                            json_data[0]["content"][4],
+                            size=20
+                        ),
+                        ft.Text(
+                            json_data[0]["content"][5],
+                            size=20
+                        ),
+                        ft.Text(
+                            json_data[0]["content"][6],
+                            size=20
+                        ),
+                        ft.Container(
+                            ft.Row(
+                                [
+                                    self.button_go_back,
+                                    ft.FilledButton(
+                                        "Вперед"
+                                    )
+                                ],
+                                alignment=ft.MainAxisAlignment.END,
+                                vertical_alignment=ft.CrossAxisAlignment.END
+                            ),
+                            padding=ft.padding.only(top=26),
+                            width=773
+                        )
+                    ]
+                ),
+                padding=ft.padding.only(top=48, left=48, right=48),
+            ),
+            width=773
+        )
+

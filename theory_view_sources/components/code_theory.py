@@ -27,7 +27,7 @@ class CodeTheory(ft.Container):
                     [
                         ft.Text(
                             self.code,
-                            color=ft.colors.BACKGROUND
+                            color=ft.colors.BACKGROUND,
                         ),
                     ],
                     alignment=ft.MainAxisAlignment.START,

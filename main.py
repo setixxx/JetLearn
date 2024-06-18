@@ -3,7 +3,14 @@ from sign_up_view_sources.sign_up_view import SignUpView
 from sign_in_view_sources.sign_in_view import SignInView
 from main_view_sources.main_view import MainView
 from start_view_sources.start_view import StartView
-from theory_view_sources.theory_view import TheoryView
+from theory_view_sources.first_theory_view import FirstTheoryView
+from theory_view_sources.second_theory_view import SecondTheoryView
+from theory_view_sources.third_theory_view import ThirdTheoryView
+from theory_view_sources.fourth_theory_view import FourthTheoryView
+from theory_view_sources.fifth_theory_view import FifthTheoryView
+from theory_view_sources.sixth_theory_view import SixthTheoryView
+from theory_view_sources.seventh_theory_view import SeventhTheoryView
+from theory_view_sources.eighth_theory_view import EighthTheoryView
 from settings_view_sources.settings_view import SettingsView
 from statistics_view_sources.statistics_view import StatisticsView
 from tests_view_sources.test_view import FirstTestView
@@ -44,8 +51,22 @@ def main(page: ft.Page):
                 page.views.append(AccountView(page, app_state))
             case "/main/settings/statistics":
                 page.views.append(StatisticsView(page, app_state))
-            case "/main/theory":
-                page.views.append(TheoryView(page))
+            case "/main/theory_1":
+                page.views.append(FirstTheoryView(page))
+            case "/main/theory_2":
+                page.views.append(SecondTheoryView(page))
+            case "/main/theory_3":
+                page.views.append(ThirdTheoryView(page))
+            case "/main/theory_4":
+                page.views.append(FourthTheoryView(page))
+            case "/main/theory_5":
+                page.views.append(FifthTheoryView(page))
+            case "/main/theory_6":
+                page.views.append(SixthTheoryView(page))
+            case "/main/theory_7":
+                page.views.append(SeventhTheoryView(page))
+            case "/main/theory_8":
+                page.views.append(EighthTheoryView(page))
             case "/main/test_1":
                 page.views.append(FirstTestView(page))
             case "/main/practice":

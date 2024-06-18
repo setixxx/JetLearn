@@ -1,12 +1,12 @@
 import flet as ft
 from theory_view_sources.components.arrow_back_and_logo import ArrowBackAndLogo
-from theory_view_sources.components.theory_text import TheoryText
+from theory_view_sources.components.fifth_theory_text import FifthTheoryText
 
-class TheoryView(ft.View):
+class FifthTheoryView(ft.View):
     def __init__(self, page: ft.Page):
         super().__init__()
         self.page = page
-        self.route = "/main/theory"
+        self.route = "/main/theory_5"
         self.padding = 0
         self.controls = [
             ft.Container(
@@ -22,8 +22,8 @@ class TheoryView(ft.View):
                         ft.Container(
                             ft.Column(
                                 [
-                                    TheoryText(lambda e: self.page.go("/main"),
-                                               self.page)
+                                    FifthTheoryText(lambda e: self.page.go("/main/theory_4"),
+                                                    self.page)
                                 ],
                                 scroll=ft.ScrollMode.AUTO
                             ),
