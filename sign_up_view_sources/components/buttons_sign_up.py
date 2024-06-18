@@ -33,8 +33,8 @@ class ButtonsSignUp(ft.Container):
         email = self.sign_up_fields.get_email_sign_up()
         password = self.sign_up_fields.get_password_sign_up()
         password_confirm = self.sign_up_fields.get_password_confirm_sign_up()
-        login_check = self.database.find_user_login(login)
-        email_check = self.database.find_user_email(email)
+        login_check = self.database.check_user_login(login)
+        email_check = self.database.check_user_email(email)
         pattern_email = (
             re.compile(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'))
         pattern_password = (
@@ -48,6 +48,7 @@ class ButtonsSignUp(ft.Container):
             self.sign_up_fields.set_login_error_sign_up("Логин занят")
         else:
             self.sign_up_fields.set_login_error_sign_up(None)
+
         if email == "":
             self.sign_up_fields.set_email_error_sign_up("Почта не может "
                                                         "быть пустой")
@@ -58,6 +59,7 @@ class ButtonsSignUp(ft.Container):
             self.sign_up_fields.set_email_error_sign_up("Почта занята")
         else:
             self.sign_up_fields.set_email_error_sign_up(None)
+
         if password == "":
             self.sign_up_fields.set_password_error_sign_up("Пароль не может "
                                                            "быть пустым")
@@ -69,6 +71,7 @@ class ButtonsSignUp(ft.Container):
                                                            "формат пароля")
         else:
             self.sign_up_fields.set_password_error_sign_up(None)
+
         if password_confirm != password:
             self.sign_up_fields.set_password_confirm_error_sign_up("Пароли не "
                                                                    "совпадают")
@@ -90,6 +93,8 @@ class ButtonsSignUp(ft.Container):
             self.create_tables(login)
             self.database.add_user(login, email, password)
             self.app_state.set_login(login)
+            self.app_state.set_email(email)
+            self.app_state.set_password(password)
             self.page.go("/main")
 
     def create_tables(self, login):
@@ -99,5 +104,13 @@ class ButtonsSignUp(ft.Container):
         self.app_state.set_completed_theory(completed_theory)
         self.database.create_table_test()
         self.database.add_new_tests(login)
+        completed_tests = self.database.get_completed_tests_count(login)
+        self.app_state.set_completed_tests(completed_tests)
         self.database.create_table_practice()
         self.database.add_new_practice(login)
+        completed_practice_count, completed_practice_total \
+            = self.database.get_completed_practice_count(login)
+        self.app_state.set_completed_practice_count(completed_practice_count)
+        self.app_state.set_completed_practice_total(completed_practice_total)
+
+

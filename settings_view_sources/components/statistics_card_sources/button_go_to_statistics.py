@@ -10,5 +10,5 @@ class ButtonGoToStatistics(ft.Container):
         self.height = 84
         self.content = ft.FilledButton(
             "Перейти",
-            on_click=lambda e: self.page.go("/main/settings/statistic")
+            on_click=lambda e: self.page.go("/main/settings/statistics")
         )

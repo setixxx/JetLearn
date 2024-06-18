@@ -3,16 +3,11 @@ from sign_up_view_sources.sign_up_view import SignUpView
 from sign_in_view_sources.sign_in_view import SignInView
 from main_view_sources.main_view import MainView
 from start_view_sources.start_view import StartView
-from theory_view_sources.first_theory_screen_source.first_theory_view \
-    import FirstTheoryView
-
+from theory_view_sources.theory_view import TheoryView
 from settings_view_sources.settings_view import SettingsView
-from statistics_view_sources.statistics_view import \
-    StatisticsView
-from tests_view_sources.first_test_screen_source.first_test_screen import \
-    FirstTestView
-from practice_screens_sources.practice_screen_source.practice_screen import \
-    PracticeScreen
+from statistics_view_sources.statistics_view import StatisticsView
+from tests_view_sources.test_view import FirstTestView
+from practice_screens_sources.practice_screen_source.practice_screen import PracticeScreen
 from account_view_sources.account_view import AccountView
 from database import DatabaseManager
 from app_state import AppState
@@ -46,11 +41,11 @@ def main(page: ft.Page):
             case "/main/settings":
                 page.views.append(SettingsView(page, app_state))
             case "/main/settings/account":
-                page.views.append(AccountView(page))
+                page.views.append(AccountView(page, app_state))
             case "/main/settings/statistics":
-                page.views.append(StatisticsView(page))
+                page.views.append(StatisticsView(page, app_state))
             case "/main/theory":
-                page.views.append(FirstTheoryView(page))
+                page.views.append(TheoryView(page))
             case "/main/test_1":
                 page.views.append(FirstTestView(page))
             case "/main/practice":
@@ -66,6 +61,39 @@ def main(page: ft.Page):
     page.on_route_change = route_change
     page.on_view_pop = view_pop
     page.go(page.route)
+
+    def window_event(e):
+        if e.data == "close":
+            page.dialog = confirm_dialog
+            confirm_dialog.open = True
+            page.update()
+
+    page.window_prevent_close = True
+    page.on_window_event = window_event
+
+    def click_exit(e):
+        page.window_destroy()
+
+    def click_stay(e):
+        confirm_dialog.open = False
+        page.update()
+
+    confirm_dialog = ft.AlertDialog(
+        modal=True,
+        title=ft.Text(
+            "Подтверждение",
+            weight=ft.FontWeight.W_600
+        ),
+        content=ft.Text(
+            "Вы действительно хотите выйти?",
+            weight=ft.FontWeight.W_400
+        ),
+        actions=[
+            ft.TextButton("Да", on_click=click_exit),
+            ft.FilledButton("Нет", on_click=click_stay),
+        ],
+        actions_alignment=ft.MainAxisAlignment.END,
+    )
 
     database = DatabaseManager("users.sqlite")
     database.create_table_users()

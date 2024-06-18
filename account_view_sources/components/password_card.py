@@ -3,17 +3,20 @@ from account_view_sources.components.password_card_sources.header import Header
 from account_view_sources.components.password_card_sources \
     .button_change_password import ButtonChangePassword
 from account_view_sources.components.password_card_sources \
-    .change_password_text_field import ChangePasswordTextField
+    .change_password_text_field import ChangePasswordField
 
 
 class PasswordCard(ft.Card):
-    def __init__(self):
+    def __init__(self, app_state):
         super().__init__()
+        self.app_state = app_state
+        self.change_password_field = ChangePasswordField()
         self.content = ft.Column(
             [
                 Header(),
-                ChangePasswordTextField(),
-                ButtonChangePassword()
+                self.change_password_field,
+                ButtonChangePassword(self.change_password_field,
+                                     self.app_state)
             ],
             spacing=0,
             width=344,

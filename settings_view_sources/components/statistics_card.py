@@ -14,7 +14,7 @@ class StatisticsCard(ft.Card):
                 Header(),
                 Subheader(),
                 TheoryProgress(app_state),
-                TestProgress(),
+                TestProgress(app_state),
                 ButtonGoToStatistics(),
             ],
             spacing=0,

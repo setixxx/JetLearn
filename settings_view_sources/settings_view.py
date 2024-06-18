@@ -1,5 +1,5 @@
 import flet as ft
-from theory_view_sources.first_theory_screen_source.components.arrow_back_and_logo import ArrowBackAndLogo
+from theory_view_sources.components.arrow_back_and_logo import ArrowBackAndLogo
 from settings_view_sources.components.profile_image import ProfileImage
 from settings_view_sources.components.settings_header import SettingsHeader
 from settings_view_sources.components.settings_subheader import SettingsSubheader

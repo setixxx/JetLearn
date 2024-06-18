@@ -1,8 +1,9 @@
 import flet as ft
 
 class TestProgress(ft.Container):
-    def __init__(self):
+    def __init__(self, app_state):
         super().__init__()
+        self.app_state = app_state
         self.padding = ft.padding.only(left=22)
         self.width = 344
         self.height = 82
@@ -22,12 +23,14 @@ class TestProgress(ft.Container):
                             weight=ft.FontWeight.W_500
                         ),
                         ft.ProgressBar(
-                            0.8,
+                            self.app_state.get_completed_tests(),
                             width=214,
                             height=4
                         ),
                         ft.Text(
-                            "Пройдено 8 из 10 тестов",
+                            f"Пройдено "
+                            f"{self.app_state.get_formatted_tests()} "
+                            f"тестов",
                             size=12,
                             weight=ft.FontWeight.W_300
                         )

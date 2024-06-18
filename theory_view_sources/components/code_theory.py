@@ -1,9 +1,10 @@
 import flet as ft
 
-class Code(ft.Container):
-    def __init__(self, page):
+class CodeTheory(ft.Container):
+    def __init__(self, code, page):
         super().__init__()
         self.page = page
+        self.code = code
         self.padding = ft.padding.only(left=32, bottom=32, top=8, right=8)
         self.alignment = ft.alignment.top_left
         self.width = 773
@@ -25,14 +26,7 @@ class Code(ft.Container):
                 ft.Row(
                     [
                         ft.Text(
-                            "@Composable\n"
-                            "fun Text(\n"
-                            "   value: String,\n"
-                            "   modifier: Modifier = Modifier,\n"
-                            "\n"
-                            "   //..... остальные параметры\n"
-                            "\n"
-                            "): @Composable Unit",
+                            self.code,
                             color=ft.colors.BACKGROUND
                         ),
                     ],
@@ -44,8 +38,7 @@ class Code(ft.Container):
         )
 
     def copy_code(self, e):
-        code_to_copy = self.content.controls[1].controls[0].value
-        self.page.set_clipboard(code_to_copy)
+        self.page.set_clipboard(self.code)
         self.page.snack_bar = ft.SnackBar(ft.Text("Текст скопирован в буфер обмена!"))
         self.page.snack_bar.open = True
         self.page.update()

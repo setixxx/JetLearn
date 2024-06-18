@@ -1,6 +1,5 @@
 import flet as ft
-from theory_view_sources.first_theory_screen_source.components \
-    .arrow_back_and_logo import ArrowBackAndLogo
+from theory_view_sources.components.arrow_back_and_logo import ArrowBackAndLogo
 from account_view_sources.components.account_header import AccountHeader
 from settings_view_sources.components.profile_image import ProfileImage
 from account_view_sources.components.login_card import LoginCard
@@ -9,7 +8,7 @@ from account_view_sources.components.password_card import PasswordCard
 
 
 class AccountView(ft.View):
-    def __init__(self, page: ft.Page):
+    def __init__(self, page: ft.Page, app_state):
         super().__init__()
         self.page = page
         self.title = "/main/settings/account"
@@ -27,12 +26,12 @@ class AccountView(ft.View):
                             [
                                 ft.Column(
                                     [
-                                        LoginCard(),
-                                        EmailCard()
+                                        LoginCard(app_state),
+                                        EmailCard(app_state)
                                     ],
                                     spacing=23
                                 ),
-                                PasswordCard()
+                                PasswordCard(app_state)
                             ],
                             spacing=23,
                             alignment=ft.MainAxisAlignment.CENTER,

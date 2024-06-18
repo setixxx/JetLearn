@@ -1,9 +1,8 @@
 import flet as ft
-from theory_view_sources.first_theory_screen_source.components.arrow_back_and_logo import ArrowBackAndLogo
-from theory_view_sources.first_theory_screen_source.components.table_of_contents import TableOfContents
-from theory_view_sources.first_theory_screen_source.components.theory_text import TheoryText
+from theory_view_sources.components.arrow_back_and_logo import ArrowBackAndLogo
+from theory_view_sources.components.theory_text import TheoryText
 
-class FirstTheoryView(ft.View):
+class TheoryView(ft.View):
     def __init__(self, page: ft.Page):
         super().__init__()
         self.page = page
@@ -30,11 +29,6 @@ class FirstTheoryView(ft.View):
                             ),
                             margin=ft.padding.only(top=76)
                         ),
-                        ft.Column(
-                            [
-                                TableOfContents()
-                            ]
-                        )
                     ]
                 ),
                 width=1500,

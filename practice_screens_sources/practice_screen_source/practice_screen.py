@@ -1,6 +1,6 @@
 import flet as ft
 
-from theory_view_sources.first_theory_screen_source.components.arrow_back_and_logo import ArrowBackAndLogo
+from theory_view_sources.components.arrow_back_and_logo import ArrowBackAndLogo
 from practice_screens_sources.practice_screen_source.components.practice_text import create_practice_text
 
 class PracticeScreen:

@@ -1,7 +1,7 @@
 import flet as ft
 
-from theory_view_sources.first_theory_screen_source.components.arrow_back_and_logo import ArrowBackAndLogo
-from tests_view_sources.first_test_screen_source.components.test_text import TestText
+from theory_view_sources.components.arrow_back_and_logo import ArrowBackAndLogo
+from tests_view_sources.components.test_text import TestText
 
 class FirstTestView(ft.View):
     def __init__(self, page: ft.Page):
