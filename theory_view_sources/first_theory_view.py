@@ -3,7 +3,7 @@ from theory_view_sources.components.arrow_back_and_logo import ArrowBackAndLogo
 from theory_view_sources.components.first_theory_text import FirstTheoryText
 
 class FirstTheoryView(ft.View):
-    def __init__(self, page: ft.Page):
+    def __init__(self, page: ft.Page, app_state):
         super().__init__()
         self.page = page
         self.route = "/main/theory_1"
@@ -22,7 +22,7 @@ class FirstTheoryView(ft.View):
                         ft.Container(
                             ft.Column(
                                 [
-                                    FirstTheoryText(page)
+                                    FirstTheoryText(page, app_state)
                                 ],
                                 scroll=ft.ScrollMode.AUTO
                             ),

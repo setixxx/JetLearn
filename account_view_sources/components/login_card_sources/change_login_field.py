@@ -10,7 +10,7 @@ class ChangeLoginField(ft.Container):
         self.padding = ft.padding.only(top=16,
                                        left=32)
         self.login_change_field = ft.TextField(
-            label="Логин",
+            label="Новый логин",
             text_size=16,
             width=280,
             max_length=16,

@@ -3,7 +3,7 @@ from theory_view_sources.components.arrow_back_and_logo import ArrowBackAndLogo
 from theory_view_sources.components.eighth_theory_text import EighthTheoryText
 
 class EighthTheoryView(ft.View):
-    def __init__(self, page: ft.Page):
+    def __init__(self, page: ft.Page, app_state):
         super().__init__()
         self.page = page
         self.route = "/main/theory_1"
@@ -22,8 +22,12 @@ class EighthTheoryView(ft.View):
                         ft.Container(
                             ft.Column(
                                 [
-                                    EighthTheoryText(lambda e: self.page.go("/main/theory_7"),
-                                                    self.page)
+                                    EighthTheoryText(
+                                        lambda e:
+                                        self.page.go("/main/theory_7"),
+                                        self.page,
+                                        app_state
+                                    )
                                 ],
                                 scroll=ft.ScrollMode.AUTO
                             ),

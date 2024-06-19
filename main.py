@@ -14,7 +14,7 @@ from theory_view_sources.eighth_theory_view import EighthTheoryView
 from settings_view_sources.settings_view import SettingsView
 from statistics_view_sources.statistics_view import StatisticsView
 from tests_view_sources.test_view import FirstTestView
-from practice_screens_sources.practice_screen_source.practice_screen import PracticeScreen
+from practice_view_source.practice_view import PracticeView
 from account_view_sources.account_view import AccountView
 from database import DatabaseManager
 from app_state import AppState
@@ -44,7 +44,7 @@ def main(page: ft.Page):
             case "/sign_up":
                 page.views.append(SignUpView(page, app_state))
             case "/main":
-                page.views.append(MainView(page))
+                page.views.append(MainView(page, app_state))
             case "/main/settings":
                 page.views.append(SettingsView(page, app_state))
             case "/main/settings/account":
@@ -52,26 +52,25 @@ def main(page: ft.Page):
             case "/main/settings/statistics":
                 page.views.append(StatisticsView(page, app_state))
             case "/main/theory_1":
-                page.views.append(FirstTheoryView(page))
+                page.views.append(FirstTheoryView(page, app_state))
             case "/main/theory_2":
-                page.views.append(SecondTheoryView(page))
+                page.views.append(SecondTheoryView(page, app_state))
             case "/main/theory_3":
-                page.views.append(ThirdTheoryView(page))
+                page.views.append(ThirdTheoryView(page, app_state))
             case "/main/theory_4":
-                page.views.append(FourthTheoryView(page))
+                page.views.append(FourthTheoryView(page, app_state))
             case "/main/theory_5":
-                page.views.append(FifthTheoryView(page))
+                page.views.append(FifthTheoryView(page, app_state))
             case "/main/theory_6":
-                page.views.append(SixthTheoryView(page))
+                page.views.append(SixthTheoryView(page, app_state))
             case "/main/theory_7":
-                page.views.append(SeventhTheoryView(page))
+                page.views.append(SeventhTheoryView(page, app_state))
             case "/main/theory_8":
-                page.views.append(EighthTheoryView(page))
+                page.views.append(EighthTheoryView(page, app_state))
             case "/main/test_1":
                 page.views.append(FirstTestView(page))
             case "/main/practice":
-                practice_screen = PracticeScreen(page)
-                page.views.append(practice_screen.create_practice_screen())
+                page.views.append(PracticeView(page, app_state))
         page.update()
 
     def view_pop(view):

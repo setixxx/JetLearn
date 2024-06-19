@@ -10,7 +10,7 @@ class ChangeEmailField(ft.Container):
         self.padding = ft.padding.only(top=16,
                                        left=32)
         self.email_change_field = ft.TextField(
-            label="Адрес эл. почты",
+            label="Новый адрес эл. почты",
             text_size=16,
             width=280,
             max_length=36,

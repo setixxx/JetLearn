@@ -11,8 +11,9 @@ from main_view_sources.components.practice_card import PracticeCards
 
 
 class MainView(ft.View):
-    def __init__(self, page: ft.Page):
+    def __init__(self, page: ft.Page, app_state):
         super().__init__()
+        self.app_state = app_state
         self.page = page
         self.padding = 0
         self.route = "/main"
@@ -49,7 +50,7 @@ class MainView(ft.View):
                         ),
                         ft.Column(
                             [
-                                SettingsButton(self.page),
+                                SettingsButton(self.page, self.app_state),
                                 cards
                             ],
                             spacing=0

@@ -314,3 +314,18 @@ class DatabaseManager:
 
             completed_tests_count = sum(1 for result in results if result > 0)
             return completed_tests_count
+
+    def update_theory(self, login, column, value):
+        with self.create_connection() as conn:
+            cursor = conn.cursor()
+            query = f"UPDATE THEORY SET {column} = ? WHERE USER_LOGIN = ?"
+            cursor.execute(query, (value, login))
+            conn.commit()
+
+    def update_tests(self, login, column, value):
+        with self.create_connection() as conn:
+            cursor = conn.cursor()
+            query = f"UPDATE TESTS SET {column} = ? WHERE USER_LOGIN = ?"
+            cursor.execute(query, (value, login))
+            conn.commit()
+            
