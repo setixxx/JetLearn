@@ -4,7 +4,7 @@ from theory_view_sources.components.code_theory import \
 import json
 from database import DatabaseManager
 
-json_file_path = 'theory.json'
+json_file_path = 'data/theory.json'
 
 # Функция для чтения данных из JSON файла
 def load_json_data(file_path):

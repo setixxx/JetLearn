@@ -1,0 +1,602 @@
+[
+    {
+        "section": "Введение в Jetpack Compose",
+        "questions": [
+            {
+                "question": "Когда был выпущен Jetpack Compose?",
+                "options": [
+                    "2015",
+                    "2016",
+                    "2017",
+                    "2018",
+                    "2019",
+                    "2020",
+                    "2021",
+                    "2022"
+                ],
+                "correct_answer": "2020"
+            },
+            {
+                "question": "Что упрощает создание и обновление пользовательского интерфейса\nв Jetpack Compose?",
+                "options": [
+                    "Императивное программирование",
+                    "Декларативное программирование",
+                    "Объектно-ориентированное программирование",
+                    "Процедурное программирование",
+                    "Событийное программирование",
+                    "Функциональное программирование",
+                    "Асинхронное программирование",
+                    "Реактивное программирование"
+                ],
+                "correct_answer": "Декларативное программирование"
+            },
+            {
+                "question": "Какой аннотацией помечаются функции для создания компонентов\nпользовательского интерфейса в Compose?",
+                "options": [
+                    "@Compose",
+                    "@Composable",
+                    "@UI",
+                    "@Component",
+                    "@View",
+                    "@Layout",
+                    "@Screen",
+                    "@Render"
+                ],
+                "correct_answer": "@Composable"
+            },
+            {
+                "question": "Что позволяет предварительно просматривать компонент\nв Android Studio?",
+                "options": [
+                    "@Render",
+                    "@Preview",
+                    "@Display",
+                    "@Inspect",
+                    "@View",
+                    "@Show",
+                    "@Expose",
+                    "@Examine"
+                ],
+                "correct_answer": "@Preview"
+            },
+            {
+                "question": "Какие концепции программирования использует Jetpack Compose?",
+                "options": [
+                    "Изменяемые данные и процедурное программирование",
+                    "Неизменяемые данные и функциональное программирование",
+                    "Изменяемые данные и объектно-ориентированное программирование",
+                    "Неизменяемые данные и процедурное программирование",
+                    "Изменяемые данные и функциональное программирование",
+                    "Неизменяемые данные и событийное программирование",
+                    "Асинхронные данные и функциональное программирование",
+                    "Реактивные данные и процедурное программирование"
+                ],
+                "correct_answer": "Неизменяемые данные и функциональное программирование"
+            }
+        ]
+    },
+    {
+        "section": "Компоненты Compose и @Composable",
+        "questions": [
+            {
+                "question": "Что определяют функции, помеченные аннотацией @Composable?",
+                "options": [
+                    "Логические структуры",
+                    "Функции обратного вызова",
+                    "Элементы интерфейса",
+                    "Методы класса",
+                    "Конструкторы",
+                    "Исключения",
+                    "Обработчики событий",
+                    "Анимации"
+                ],
+                "correct_answer": "Элементы интерфейса"
+            },
+            {
+                "question": "Какую структуру образуют вложенные компоненты?",
+                "options": [
+                    "Линейную",
+                    "Деревовидную",
+                    "Кольцевую",
+                    "Матрицу",
+                    "Граф",
+                    "Сетку",
+                    "Список",
+                    "Иерархическую"
+                ],
+                "correct_answer": "Иерархическую"
+            },
+            {
+                "question": "Что демонстрирует вложенность компонентов \nв примере с Button и Text?",
+                "options": [
+                    "Невозможность вложенности",
+                    "Различные типы событий",
+                    "Создание списков",
+                    "Горизонтальное расположение",
+                    "Вертикальное расположение",
+                    "Изменение состояния",
+                    "Комбинирование компонентов",
+                    "Оптимизация кода"
+                ],
+                "correct_answer": "Комбинирование компонентов"
+            },
+            {
+                "question": "Какое преимущество использования компонентов упоминается\nв тексте?",
+                "options": [
+                    "Большой размер кода",
+                    "Сложность кода",
+                    "Повышенная модульность",
+                    "Низкая производительность",
+                    "Невозможность тестирования",
+                    "Зависимость от платформы",
+                    "Непредсказуемое поведение",
+                    "Отсутствие переиспользуемости"
+                ],
+                "correct_answer": "Повышенная модульность"
+            },
+            {
+                "question": "Что позволяет использовать встроенные компоненты \nв Jetpack Compose?",
+                "options": [
+                    "Сложные макеты",
+                    "Только текстовые элементы",
+                    "Только изображения",
+                    "Гибкость и мощные возможности",
+                    "Только списки",
+                    "Только кнопки",
+                    "Ограниченные возможности",
+                    "Только анимации"
+                ],
+                "correct_answer": "Гибкость и мощные возможности"
+            }
+        ]
+    },
+    {
+        "section": "Состояние и перерисовка",
+        "questions": [
+            {
+                "question": "Что является ключевым понятием в Jetpack Compose?",
+                "options": [
+                    "Потоки",
+                    "Асинхронность",
+                    "События",
+                    "Состояние",
+                    "Анимации",
+                    "Компиляция",
+                    "Кэширование",
+                    "Оптимизация"
+                ],
+                "correct_answer": "Состояние"
+            },
+            {
+                "question": "Что происходит, когда состояние изменяется в Compose?",
+                "options": [
+                    "Приложение перезагружается",
+                    "Все компоненты перерисовываются",
+                    "Изменяются только затронутые компоненты",
+                    "Ничего не происходит",
+                    "Происходит ошибка",
+                    "Приложение закрывается",
+                    "Состояние сохраняется",
+                    "Изменяются все компоненты"
+                ],
+                "correct_answer": "Изменяются только затронутые компоненты"
+            },
+            {
+                "question": "Какой тип данных представляет неизменяемое состояние в Compose?",
+                "options": [
+                    "State",
+                    "MutableState",
+                    "StateFlow",
+                    "MutableStateFlow",
+                    "LiveData",
+                    "Flow",
+                    "Suspend",
+                    "Deferred"
+                ],
+                "correct_answer": "State"
+            },
+            {
+                "question": "Какая функция используется для сохранения значения между\nперерисовками компонентов?",
+                "options": [
+                    "remember",
+                    "saveState",
+                    "retain",
+                    "keep",
+                    "hold",
+                    "store",
+                    "persist",
+                    "cache"
+                ],
+                "correct_answer": "remember"
+            },
+            {
+                "question": "Где должно происходить изменение состояния в Compose?",
+                "options": [
+                    "Вне @Composable функций",
+                    "Внутри @Composable функций",
+                    "В любом месте кода",
+                    "Только в классах",
+                    "В main функции",
+                    "Внутри методов",
+                    "В обработчиках событий",
+                    "В глобальных переменных"
+                ],
+                "correct_answer": "Внутри @Composable функций"
+            }
+        ]
+    },
+    {
+        "section": "Модификаторы и стили",
+        "questions": [
+            {
+                "question": "Что позволяет настраивать внешний вид и поведение компонентов \nв Compose?",
+                "options": [
+                    "Классы",
+                    "Интерфейсы",
+                    "Модификаторы",
+                    "Обработчики событий",
+                    "Таймеры",
+                    "Лямбда-выражения",
+                    "Переменные",
+                    "Функции"
+                ],
+                "correct_answer": "Модификаторы"
+            },
+            {
+                "question": "Какие свойства можно изменить с помощью модификаторов?",
+                "options": [
+                    "Размер и отступы",
+                    "Только цвета",
+                    "Только шрифты",
+                    "Только события нажатия",
+                    "Только жесты",
+                    "Только тени",
+                    "Только границы",
+                    "Только фон"
+                ],
+                "correct_answer": "Размер и отступы"
+            },
+            {
+                "question": "Какие контейнеры могут содержать модификаторы?",
+                "options": [
+                    "Только Box",
+                    "Только Column",
+                    "Только Row",
+                    "Box, Column и Row",
+                    "Только Text",
+                    "Только Image",
+                    "Только Button",
+                    "Только LazyColumn"
+                ],
+                "correct_answer": "Box, Column и Row"
+            },
+            {
+                "question": "Что можно создать путем комбинирования существующих\nмодификаторов?",
+                "options": [
+                    "Новые макеты",
+                    "Новые компоненты",
+                    "Сложные стили и поведение",
+                    "Только анимации",
+                    "Только списки",
+                    "Только кнопки",
+                    "Только изображения",
+                    "Только текст"
+                ],
+                "correct_answer": "Сложные стили и поведение"
+            },
+            {
+                "question": "Какие модификаторы используются для изменения размера\nкомпонентов?",
+                "options": [
+                    "size, width, height",
+                    "padding, margin",
+                    "color, font",
+                    "clickable, draggable",
+                    "border, shadow",
+                    "background, foreground",
+                    "align, position",
+                    "rotate, scale"
+                ],
+                "correct_answer": "size, width, height"
+            }
+        ]
+    },
+    {
+        "section": "Макеты и расположение",
+        "questions": [
+            {
+                "question": "Какие компоненты используются для создания макетов в Compose?",
+                "options": [
+                    "Column, Row, Box",
+                    "Column, Row, Grid",
+                    "Box, Grid, List",
+                    "Row, Grid, List",
+                    "Box, Grid, Column",
+                    "Column, Row, Table",
+                    "Row, Box, Table",
+                    "Column, List, Table"
+                ],
+                "correct_answer": "Column, Row, Box"
+            },
+            {
+                "question": "Какой контейнер используется для вертикального расположения \nэлементов?",
+                "options": [
+                    "Row",
+                    "Box",
+                    "Column",
+                    "Grid",
+                    "List",
+                    "Table",
+                    "Frame",
+                    "Stack"
+                ],
+                "correct_answer": "Column"
+            },
+            {
+                "question": "Какой контейнер используется для горизонтального расположения\nэлементов?",
+                "options": [
+                    "Row",
+                    "Box",
+                    "Column",
+                    "Grid",
+                    "List",
+                    "Table",
+                    "Frame",
+                    "Stack"
+                ],
+                "correct_answer": "Row"
+            },
+            {
+                "question": "Какой контейнер используется для наложения элементов\nдруг на друга?",
+                "options": [
+                    "Row",
+                    "Box",
+                    "Column",
+                    "Grid",
+                    "List",
+                    "Table",
+                    "Frame",
+                    "Stack"
+                ],
+                "correct_answer": "Box"
+            },
+            {
+                "question": "Какой контейнер компоновки используется для создания\nслоев и наложения компонентов?",
+                "options": [
+                    "Row",
+                    "Box",
+                    "Column",
+                    "Grid",
+                    "List",
+                    "Table",
+                    "Frame",
+                    "Stack"
+                ],
+                "correct_answer": "Box"
+            }
+        ]
+    },
+    {
+        "section": "Списки и отображение данных",
+        "questions": [
+            {
+                "question": "Какие компоненты используются для отображения списков данных \nв Compose?",
+                "options": [
+                    "ListView и GridView",
+                    "RecyclerView и CardView",
+                    "LazyColumn и LazyRow",
+                    "Column и Row",
+                    "TableView и ListView",
+                    "Box и Grid",
+                    "Stack и Frame",
+                    "Grid и List"
+                ],
+                "correct_answer": "LazyColumn и LazyRow"
+            },
+            {
+                "question": "Какой метод используется для указания списка элементов \nв LazyColumn?",
+                "options": [
+                    "setItems",
+                    "populate",
+                    "fill",
+                    "items",
+                    "load",
+                    "display",
+                    "present",
+                    "render"
+                ],
+                "correct_answer": "items"
+            },
+            {
+                "question": "Какой компонент используется для создания списков с вертикальной\nпрокруткой?",
+                "options": [
+                    "LazyRow",
+                    "LazyColumn",
+                    "Column",
+                    "Row",
+                    "Box",
+                    "Grid",
+                    "Table",
+                    "Frame"
+                ],
+                "correct_answer": "LazyColumn"
+            },
+            {
+                "question": "Какой компонент используется для создания списков \nс горизонтальной прокруткой?",
+                "options": [
+                    "LazyRow",
+                    "LazyColumn",
+                    "Column",
+                    "Row",
+                    "Box",
+                    "Grid",
+                    "Table",
+                    "Frame"
+                ],
+                "correct_answer": "LazyRow"
+            },
+            {
+                "question": "Что используется для добавления разделителей между элементами\nв LazyColumn и LazyRow?",
+                "options": [
+                    "itemSeparator",
+                    "divider",
+                    "itemSpacer",
+                    "space",
+                    "gap",
+                    "line",
+                    "barrier",
+                    "border"
+                ],
+                "correct_answer": "itemSpacer"
+            }
+        ]
+    },
+    {
+        "section": "Изображения и ресурсы в Compose",
+        "questions": [
+            {
+                "question": "Какой компонент используется для отображения изображений\nв Jetpack Compose?",
+                "options": [
+                    "Picture",
+                    "Bitmap",
+                    "Drawable",
+                    "Image",
+                    "Graphic",
+                    "Photo",
+                    "Canvas",
+                    "View"
+                ],
+                "correct_answer": "Image"
+            },
+            {
+                "question": "Какие источники изображений поддерживает Jetpack Compose?",
+                "options": [
+                    "Только ресурсы",
+                    "Только файлы",
+                    "Только URL-адреса",
+                    "Ресурсы, файлы и URL-адреса",
+                    "Только bitmap-данные",
+                    "Ресурсы и файлы",
+                    "URL-адреса и bitmap-данные",
+                    "Только vector-данные"
+                ],
+                "correct_answer": "Ресурсы, файлы и URL-адреса"
+            },
+            {
+                "question": "Какая функция используется для загрузки изображения\nиз ресурса приложения?",
+                "options": [
+                    "loadImage",
+                    "imageResource",
+                    "getImage",
+                    "painterResource",
+                    "fetchImage",
+                    "imageLoader",
+                    "bitmapResource",
+                    "drawableResource"
+                ],
+                "correct_answer": "painterResource"
+            },
+            {
+                "question": "Что необходимо задать для компонента Image для обеспечения\nдоступности приложения?",
+                "options": [
+                    "contentDescription",
+                    "accessibilityLabel",
+                    "tooltip",
+                    "altText",
+                    "description",
+                    "summary",
+                    "hint",
+                    "ariaLabel"
+                ],
+                "correct_answer": "contentDescription"
+            },
+            {
+                "question": "Какие дополнительные библиотеки используются для кэширования\nи трансформации изображений в Compose?",
+                "options": [
+                    "Retrofit и OkHttp",
+                    "Picasso и Glide",
+                    "Room и LiveData",
+                    "Coil и Glide",
+                    "Coroutines и Flow",
+                    "Picasso и Coil",
+                    "Dagger и Hilt",
+                    "RxJava и RxAndroid"
+                ],
+                "correct_answer": "Coil и Glide"
+            }
+        ]
+    },
+    {
+        "section": "Тема оформления и Material Design",
+        "questions": [
+            {
+                "question": "С какой концепцией тесно интегрирован Jetpack Compose?",
+                "options": [
+                    "MVC",
+                    "Material Design",
+                    "MVP",
+                    "MVVM",
+                    "Clean Architecture",
+                    "Singleton",
+                    "Builder",
+                    "Factory"
+                ],
+                "correct_answer": "Material Design"
+            },
+            {
+                "question": "Какие аспекты стиля определяет тема оформления в Compose?",
+                "options": [
+                    "Только цвета",
+                    "Цвета, типографику, формы, тени",
+                    "Только шрифты",
+                    "Только отступы",
+                    "Только тени",
+                    "Только формы",
+                    "Только иконки",
+                    "Только фон"
+                ],
+                "correct_answer": "Цвета, типографику, формы, тени"
+            },
+            {
+                "question": "Какие компоненты предоставляет Jetpack Compose,\nследующие принципам Material Design?",
+                "options": [
+                    "Button, TextField, Checkbox",
+                    "RecyclerView, CardView, ListView",
+                    "Button, TextView, EditText",
+                    "Fragment, Activity, Service",
+                    "LiveData, ViewModel, DataBinding",
+                    "LinearLayout, RelativeLayout, FrameLayout",
+                    "TextView, ImageView, ScrollView",
+                    "AsyncTask, Thread, Handler"
+                ],
+                "correct_answer": "Button, TextField, Checkbox"
+            },
+            {
+                "question": "Что используется для применения темы ко всему приложению\nв Compose?",
+                "options": [
+                    "AppTheme",
+                    "ThemeProvider",
+                    "MaterialTheme",
+                    "ThemeManager",
+                    "StyleTheme",
+                    "ComposeTheme",
+                    "DesignTheme",
+                    "UiTheme"
+                ],
+                "correct_answer": "MaterialTheme"
+            },
+            {
+                "question": "Что представляет собой компонент Scaffold в Compose?",
+                "options": [
+                    "Основную раскладку материального дизайна",
+                    "Компонент для отображения изображений",
+                    "Компонент для создания списков",
+                    "Компонент для обработки событий",
+                    "Компонент для создания анимаций",
+                    "Компонент для управления состоянием",
+                    "Компонент для навигации между экранами",
+                    "Компонент для создания форм"
+                ],
+                "correct_answer": "Основную раскладку материального дизайна"
+            }
+        ]
+    }
+]

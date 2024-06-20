@@ -16,7 +16,7 @@ class GitHubLinkAndImage(ft.Container):
                 text_align=ft.TextAlign.END
             ),
             trailing=ft.Image(
-                src=f"assets/images/github.png",
+                src=f"assets/github.png",
                 height=24,
                 width=24,
                 fit=ft.ImageFit.COVER,

@@ -1,0 +1,42 @@
+[
+  {
+      "task": "Создайте кнопку с текстом 'Нажми меня'.",
+      "expected": "Button(onClick = { /* Действие */ }) { Text('Нажми меня') }"
+  },
+  {
+      "task": "Создайте текстовый компонент, который отображает строку 'Привет, мир!'.",
+      "expected": "Text('Привет, мир!')"
+  },
+  {
+      "task": "Создайте счётчик, который увеличивается на 1 при каждом нажатии кнопки.",
+      "expected": "var count by remember { mutableStateOf(0) }\nButton(onClick = { count++ }) { Text('Нажми меня: $count') }"
+  },
+  {
+      "task": "Создайте изображение, используя URL 'https://example.com/image.png'.",
+      "expected": "Image(painter = rememberImagePainter('https://example.com/image.png'))"
+  },
+  {
+      "task": "Создайте вертикальный столбец с двумя текстовыми элементами: 'Привет' и 'Мир'.",
+      "expected": "Column { Text('Привет'); Text('Мир') }"
+  },
+  {
+      "task": "Создайте горизонтальный ряд с двумя кнопками: 'Кнопка 1' и 'Кнопка 2'.",
+      "expected": "Row { Button(onClick = { /* Действие */ }) { Text('Кнопка 1') }; Button(onClick = { /* Действие */ }) { Text('Кнопка 2') } }"
+  },
+  {
+      "task": "Создайте текстовое поле для ввода с надписью 'Введите текст'.",
+      "expected": "TextField(label = 'Введите текст')"
+  },
+  {
+      "task": "Создайте компонент Box с фоновым цветом Color.Blue и отступами 16dp.",
+      "expected": "Box(modifier = Modifier.background(Color.Blue).padding(16.dp))"
+  },
+  {
+      "task": "Создайте кнопку, которая отображает тост 'Кнопка нажата' при нажатии.",
+      "expected": "Button(onClick = { /* показать тост 'Кнопка нажата' */ }) { Text('Нажми меня') }"
+  },
+  {
+      "task": "Создайте текст, который меняет цвет на красный при клике.",
+      "expected": "var color by remember { mutableStateOf(Color.Black) }\nText('Нажми меня', modifier = Modifier.clickable { color = Color.Red }, color = color)"
+  }
+]

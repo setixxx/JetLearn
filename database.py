@@ -1,14 +1,17 @@
 import sqlite3
 
-
 class DatabaseManager:
+    # Класс для управления базой данных.
     def __init__(self, database_name):
+        # Инициализирует имя базы данных.
         self.database_name = database_name
 
     def create_connection(self):
+        # Создает соединение с базой данных.
         return sqlite3.connect(self.database_name, check_same_thread=False)
 
     def create_table_users(self):
+        # Создает таблицу пользователей.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
@@ -20,6 +23,7 @@ class DatabaseManager:
             conn.commit()
 
     def create_table_theory(self):
+        # Создает таблицу для хранения данных о теории.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
@@ -39,6 +43,7 @@ class DatabaseManager:
             conn.commit()
 
     def create_table_test(self):
+        # Создает таблицу для хранения результатов тестов.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
@@ -58,18 +63,21 @@ class DatabaseManager:
             conn.commit()
 
     def create_table_practice(self):
+        # Создает таблицу для хранения статистики практических заданий.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS PRACTICE (
                     USER_LOGIN TEXT PRIMARY KEY,
-                    PRACTICE_1 BOOLEAN DEFAULT False,
+                    CORRECT_ATTEMPTS INT DEFAULT 0,
+                    TOTAL_ATTEMPTS INT DEFAULT 0,
                     FOREIGN KEY (USER_LOGIN) REFERENCES USERS(LOGIN)
                 );
             """)
             conn.commit()
 
     def add_user(self, login, email, password):
+        # Добавляет нового пользователя в таблицу.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -80,6 +88,7 @@ class DatabaseManager:
             conn.commit()
 
     def check_user_login(self, login):
+        # Проверяет наличие пользователя по логину.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -91,6 +100,7 @@ class DatabaseManager:
             return user
 
     def check_user_email(self, email):
+        # Проверяет наличие пользователя по email.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -102,6 +112,7 @@ class DatabaseManager:
             return user
 
     def check_user_password(self, login, password):
+        # Проверяет пароль пользователя.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -112,6 +123,7 @@ class DatabaseManager:
             return user
 
     def find_user_and_password_by_email(self, email, password):
+        # Находит пользователя по email и паролю.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -123,6 +135,7 @@ class DatabaseManager:
             return user
 
     def find_login_by_email(self, email):
+        # Находит логин по email.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -132,6 +145,7 @@ class DatabaseManager:
             return user
 
     def find_email_by_login(self, login):
+        # Находит email по логину.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -142,6 +156,7 @@ class DatabaseManager:
             return user
 
     def add_new_theory(self, login):
+        # Добавляет новую запись о теории для пользователя.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -151,6 +166,7 @@ class DatabaseManager:
             conn.commit()
 
     def add_new_tests(self, login):
+        # Добавляет новую запись о тестах для пользователя.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -160,6 +176,7 @@ class DatabaseManager:
             conn.commit()
 
     def add_new_practice(self, login):
+        # Добавляет новую запись о практических заданиях для пользователя.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -169,6 +186,7 @@ class DatabaseManager:
             conn.commit()
 
     def get_completed_theory_count(self, login):
+        # Возвращает количество пройденных модулей теории.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
@@ -188,47 +206,8 @@ class DatabaseManager:
             completed_theory_count = cursor.fetchone()[0]
             return completed_theory_count
 
-    def get_completed_practice_count(self, login):
-        with self.create_connection() as conn:
-            cursor = conn.cursor()
-
-            # Получаем список столбцов в таблице PRACTICE, кроме USER_LOGIN
-            cursor.execute("PRAGMA table_info(PRACTICE)")
-            columns = [col[1] for col in cursor.fetchall() if
-                       col[1] != 'USER_LOGIN']
-
-            # Формируем динамический SQL-запрос для подсчета количества True
-            conditions_true = [f"CASE WHEN {col} = 1 THEN 1 ELSE 0 END" for col
-                               in columns]
-            query_true = f"""
-                SELECT SUM({' + '.join(conditions_true)}) 
-                AS completed_practice_count
-                FROM PRACTICE
-                WHERE USER_LOGIN = ?
-            """
-
-            # Формируем динамический SQL-запрос для подсчета общего
-            # количества практических заданий
-            conditions_total = [
-                f"CASE WHEN {col} IS NOT NULL THEN 1 ELSE 0 END" for col in
-                columns]
-            query_total = f"""
-                SELECT SUM({' + '.join(conditions_total)}) 
-                AS total_practice_count
-                FROM PRACTICE
-                WHERE USER_LOGIN = ?
-            """
-
-            # Выполняем запросы
-            cursor.execute(query_true, (login,))
-            completed_practice_count = cursor.fetchone()[0]
-
-            cursor.execute(query_total, (login,))
-            total_practice_count = cursor.fetchone()[0]
-
-            return completed_practice_count, total_practice_count
-
     def update_user_login(self, old_login, new_login):
+        # Обновляет логин пользователя.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             # Обновляем логин в таблице USERS
@@ -236,24 +215,10 @@ class DatabaseManager:
                 "UPDATE USERS SET LOGIN = ? WHERE LOGIN = ?",
                 (new_login, old_login)
             )
-            # Обновляем логин в таблице THEORY
-            cursor.execute(
-                "UPDATE THEORY SET USER_LOGIN = ? WHERE USER_LOGIN = ?",
-                (new_login, old_login)
-            )
-            # Обновляем логин в таблице TESTS
-            cursor.execute(
-                "UPDATE TESTS SET USER_LOGIN = ? WHERE USER_LOGIN = ?",
-                (new_login, old_login)
-            )
-            # Обновляем логин в таблице PRACTICE
-            cursor.execute(
-                "UPDATE PRACTICE SET USER_LOGIN = ? WHERE USER_LOGIN = ?",
-                (new_login, old_login)
-            )
             conn.commit()
 
     def update_user_email(self, login, new_email):
+        # Обновляет email пользователя.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -263,6 +228,7 @@ class DatabaseManager:
             conn.commit()
 
     def update_user_password(self, login, new_password):
+        # Обновляет пароль пользователя.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -272,6 +238,7 @@ class DatabaseManager:
             conn.commit()
 
     def get_test_results_and_grades(self, login):
+        # Получает результаты тестов и оценки.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
@@ -294,11 +261,12 @@ class DatabaseManager:
                     grades.append(5)
                 else:
                     grades.append(
-                        2)  # Default grade if result is 0 or undefined
+                        "Нет")
 
             return results, grades
 
     def get_completed_tests_count(self, login):
+        # Возвращает количество пройденных тестов.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
@@ -316,6 +284,7 @@ class DatabaseManager:
             return completed_tests_count
 
     def update_theory(self, login, column, value):
+        # Обновляет данные о теории.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             query = f"UPDATE THEORY SET {column} = ? WHERE USER_LOGIN = ?"
@@ -323,9 +292,45 @@ class DatabaseManager:
             conn.commit()
 
     def update_tests(self, login, column, value):
+        # Обновляет результаты тестов.
         with self.create_connection() as conn:
             cursor = conn.cursor()
             query = f"UPDATE TESTS SET {column} = ? WHERE USER_LOGIN = ?"
             cursor.execute(query, (value, login))
             conn.commit()
-            
+
+    def increment_correct_attempts(self, login):
+        # Увеличивает количество правильных ответов.
+        with self.create_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "UPDATE PRACTICE SET "
+                "CORRECT_ATTEMPTS = CORRECT_ATTEMPTS + 1 "
+                "WHERE USER_LOGIN = ?",
+                (login,)
+            )
+            conn.commit()
+
+    def increment_total_attempts(self, login):
+        # Увеличивает общее количество попыток.
+        with self.create_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "UPDATE PRACTICE "
+                "SET TOTAL_ATTEMPTS = TOTAL_ATTEMPTS + 1 "
+                "WHERE USER_LOGIN = ?",
+                (login,)
+            )
+            conn.commit()
+
+    def get_practice_stats(self, login):
+        # Получает статистику по практическим заданиям.
+        with self.create_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT CORRECT_ATTEMPTS, TOTAL_ATTEMPTS
+                FROM PRACTICE
+                WHERE USER_LOGIN = ?
+            """, (login,))
+            stats = cursor.fetchone()
+            return stats if stats else (0, 0)
